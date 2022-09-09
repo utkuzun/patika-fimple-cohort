@@ -1,10 +1,14 @@
 import './App.css'
 
+import Options from './components/Options'
+import Payments from './components/Payments'
+
 function App() {
   return (
-    <div className='App'>
-      <h4>main app</h4>
-    </div>
+    <main className='App'>
+      <Options />
+      <Payments />
+    </main>
   )
 }
 
