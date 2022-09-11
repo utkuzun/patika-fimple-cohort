@@ -1,48 +1,57 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { useOptionsContext } from '../contexts/optionsContext'
+import { useForm } from 'react-hook-form'
 
 const Options = () => {
-  const [optionsForm, setOptionsForm] = useState({
-    balance: 0,
-    numberOfPeriods: 0,
-    interestRate: 0,
-    period: 'aylık',
-    bsmv: 5,
-    kkdf: 15,
-  })
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm()
 
   const { setOptions } = useOptionsContext()
 
+  const initialValues = {
+    balance: 0,
+    period: '',
+    numberOfPeriods: 0,
+    interestRate: 2.28,
+    bsmv: 5,
+    kkdf: 15,
+  }
+
   const periodOptions = ['aylık', 'yıllık', 'haftalık']
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setOptions(optionsForm)
+  const onSubmit = (data) => {
+    setOptions(data)
   }
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setOptionsForm({ ...optionsForm, [name]: value })
-  }
+  console.log(errors)
 
   return (
     <section>
       <h4>Kredi bilgilerini gir</h4>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className='form-input'>
           <label htmlFor='balance'>Miktar : </label>
           <input
+            defaultValue={initialValues.balance}
             type='number'
-            step='5000'
-            name='balance'
-            value={optionsForm.balance}
-            onChange={handleChange}
+            {...register('balance', {
+              required: true,
+              min: {
+                value: 5000,
+                message: 'En az 5000 TL lik bir miktar giriniz!!',
+              },
+            })}
           />
         </div>
         <div className='form-input'>
           <label htmlFor='balance'>Taksit Seçeneği : </label>
-          <select name='period' onChange={handleChange}>
+          <select
+            defaultValue={initialValues.period}
+            {...register('period', { required: true })}
+          >
             {periodOptions.map((period) => (
               <option key={period} value={period}>
                 {period}
@@ -53,38 +62,35 @@ const Options = () => {
         <div className='form-input'>
           <label htmlFor='balance'>Vade : </label>
           <input
+            defaultValue={initialValues.numberOfPeriods}
             type='number'
-            name='numberOfPeriods'
-            value={optionsForm.numberOfPeriods}
-            onChange={handleChange}
+            {...register('numberOfPeriods', { required: true })}
           />
         </div>
         <div className='form-input'>
           <label htmlFor='balance'>Kar Oranı : </label>
           <input
             type='number'
-            step='5000'
-            name='interestRate'
-            value={optionsForm.interestRate}
-            onChange={handleChange}
+            defaultValue={initialValues.interestRate}
+            {...register('interestRate', { required: true })}
           />
         </div>
         <div className='form-input'>
           <label htmlFor='balance'>BSMV : </label>
           <input
             type='number'
+            defaultValue={initialValues.bsmv}
             name='bsmv'
-            value={optionsForm.bsmv}
-            onChange={handleChange}
+            {...register('bsmv', { required: true })}
           />
         </div>
         <div className='form-input'>
           <label htmlFor='balance'>KKDF : </label>
           <input
             type='number'
+            defaultValue={initialValues.kkdf}
             name='kkdf'
-            value={optionsForm.kkdf}
-            onChange={handleChange}
+            {...register('kkdf', { required: true })}
           />
         </div>
         <button type='submit'>Hesapla</button>

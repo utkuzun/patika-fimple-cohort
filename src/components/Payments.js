@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { usePaymentsContext } from '../contexts/paymentsContext'
 
 const Payments = () => {
-  const { payments } = usePaymentsContext()
+  const { payments, createPayments } = usePaymentsContext()
 
-  console.log(payments, 'payments')
+  useEffect(() => {
+    createPayments()
+  }, [])
+
+  if (!payments.length) {
+    return null
+  }
+
   return <h4>Payments</h4>
 }
 
