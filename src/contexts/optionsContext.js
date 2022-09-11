@@ -4,19 +4,12 @@ const OptionsContext = createContext()
 
 const OptionsProvider = ({ children }) => {
   const [options, setOptions] = useState({
-    loan: {
-      balance: 0,
-      period: '',
-      numberOfPeriod: 0,
-      interestRate: 2.28,
-      interestKind: '',
-      BSMV: 5,
-      KKDF: 15,
-    },
-    formOptions: {
-      periods: ['aylık', 'yıllık', 'haftalık'],
-      interestKinds: ['basit', 'bileşik'],
-    },
+    balance: 0,
+    period: '',
+    numberOfPeriods: 0,
+    interestRate: 2.28,
+    bsmv: 5,
+    kkdf: 15,
   })
 
   return (
