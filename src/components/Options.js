@@ -13,17 +13,18 @@ const Options = () => {
   const { setOptions } = useOptionsContext()
 
   const initialValues = {
-    balance: 0,
-    period: '',
-    numberOfPeriods: 0,
+    balance: 1000000,
+    period: 'aylık',
+    numberOfPeriods: 12,
     interestRate: 2.28,
-    bsmv: 5,
-    kkdf: 15,
+    bsmv: 0.228,
+    kkdf: 0.342,
   }
 
   const periodOptions = ['aylık', 'yıllık', 'haftalık']
 
   const onSubmit = (data) => {
+    console.log(data)
     setOptions(data)
   }
   console.log(errors)

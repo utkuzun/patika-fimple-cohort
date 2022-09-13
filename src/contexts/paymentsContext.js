@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react'
+// import _ from 'lodash'
 
 import { useOptionsContext } from './optionsContext'
 
@@ -9,9 +10,23 @@ const PaymentsProvider = ({ children }) => {
   const { options } = useOptionsContext()
 
   const createPayments = () => {
-    if (!options.balance) {
+    const { balance } = options
+
+    if (!balance) {
       setPayments([])
     }
+
+    // const paymentAmount =
+
+    // let paymentsInit = _.times(numberOfPeriods, {
+    //   id: null,
+    //   amount: null,
+    //   mainMoney: null,
+    //   remains: null,
+    //   gain: null,
+    //   bsmv: null,
+    //   kkdf: null,
+    // })
 
     setPayments(['akmet'])
   }
