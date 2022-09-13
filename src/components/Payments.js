@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { usePaymentsContext } from '../contexts/paymentsContext'
 
 const Payments = () => {
-  const { payments, createPayments } = usePaymentsContext()
+  const { payments } = usePaymentsContext()
 
-  useEffect(() => {
-    createPayments()
-  }, [])
+  console.log(payments, 'payments')
 
   if (!payments.length) {
     return null

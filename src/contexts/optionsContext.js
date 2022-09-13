@@ -4,12 +4,12 @@ const OptionsContext = createContext()
 
 const OptionsProvider = ({ children }) => {
   const [options, setOptions] = useState({
-    balance: 1000000,
+    balance: 100000,
     period: 'aylık',
     numberOfPeriods: 12,
     interestRate: 2.28,
-    bsmv: 0.228,
-    kkdf: 0.342,
+    bsmv: 10,
+    kkdf: 15,
   })
 
   return (
