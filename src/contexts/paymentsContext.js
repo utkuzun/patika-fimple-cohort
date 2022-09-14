@@ -19,12 +19,12 @@ const PaymentsProvider = ({ children }) => {
     let interest = interestRate
 
     if (period === 'haftalık') {
-      i = i / 4
+      i = i * (7 / 30)
       interest = interestRate / 4
     }
     if (period === 'yıllık') {
       i = i * 12
-      interest = interestRate * 12
+      interest = interestRate * (365 / 30)
     }
 
     const amountBilesik = (balance * (i * (1 + i) ** n)) / ((1 + i) ** n - 1)
