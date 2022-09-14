@@ -17,7 +17,7 @@ const Options = () => {
     balance: 100000,
     period: 'aylık',
     numberOfPeriods: 12,
-    interestRate: 0,
+    interestRate: 2.28,
     bsmv: 10,
     kkdf: 15,
   }
@@ -84,6 +84,7 @@ const Options = () => {
           <input
             className='form-content'
             type='number'
+            step='0.01'
             defaultValue={initialValues.interestRate}
             {...register('interestRate', {
               required: true,
