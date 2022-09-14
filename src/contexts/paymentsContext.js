@@ -4,13 +4,12 @@ import _ from 'lodash'
 const PaymentsContext = createContext()
 
 const PaymentsProvider = ({ children }) => {
-  const [payments, setPayments] = useState([])
+  const [payments, setPayments] = useState({ payback: [], totalAmount: 0 })
 
   const createPayments = (options) => {
     const { balance, numberOfPeriods, interestRate, bsmv, kkdf, period } =
       options
 
-    console.log(options, 'options')
     const n = numberOfPeriods
 
     let i = interestRate * (1 + bsmv + kkdf)
@@ -25,17 +24,16 @@ const PaymentsProvider = ({ children }) => {
       interest = interestRate * 12
     }
 
-    console.log(i, 'rate')
     const paymentAmount = (balance * (i * (1 + i) ** n)) / ((1 + i) ** n - 1)
 
     let paymentsInit = _.times(numberOfPeriods, _.constant({}))
 
     let balanceVar = balance
 
-    console.log(paymentAmount, 'paymentAmount')
     const paymentsFinal = paymentsInit.map((payment, index) => {
       const paymentNew = {}
 
+      paymentNew.paymentAmount = paymentAmount
       paymentNew.id = index + 1
       paymentNew.gain = balanceVar * interest
       paymentNew.bsmv = paymentNew.gain * bsmv
@@ -47,7 +45,9 @@ const PaymentsProvider = ({ children }) => {
 
       return paymentNew
     })
-    setPayments(paymentsFinal)
+
+    const totalAmount = paymentAmount * n
+    setPayments({ payback: paymentsFinal, totalAmount })
   }
 
   return (
