@@ -4,7 +4,10 @@ import _ from 'lodash'
 const PaymentsContext = createContext()
 
 const PaymentsProvider = ({ children }) => {
-  const [payments, setPayments] = useState({ payback: [], totalAmount: 0 })
+  const [payments, setPayments] = useState({
+    bilesik: { totalAmount: 0, payback: [] },
+    basit: { totalAmount: 0, payback: [] },
+  })
 
   const createPayments = (options) => {
     const { balance, numberOfPeriods, interestRate, bsmv, kkdf, period } =
@@ -24,30 +27,34 @@ const PaymentsProvider = ({ children }) => {
       interest = interestRate * 12
     }
 
-    const paymentAmount = (balance * (i * (1 + i) ** n)) / ((1 + i) ** n - 1)
+    const amountBilesik = (balance * (i * (1 + i) ** n)) / ((1 + i) ** n - 1)
 
-    let paymentsInit = _.times(numberOfPeriods, _.constant({}))
+    let bilesikInit = _.times(numberOfPeriods, _.constant({}))
 
     let balanceVar = balance
 
-    const paymentsFinal = paymentsInit.map((payment, index) => {
+    const bilesikFinal = bilesikInit.map((payment, index) => {
       const paymentNew = {}
 
-      paymentNew.paymentAmount = paymentAmount
+      paymentNew.paymentAmount = amountBilesik
       paymentNew.id = index + 1
       paymentNew.gain = balanceVar * interest
       paymentNew.bsmv = paymentNew.gain * bsmv
       paymentNew.kkdf = paymentNew.gain * kkdf
       paymentNew.mainMoney =
-        paymentAmount - paymentNew.gain - paymentNew.bsmv - paymentNew.kkdf
+        amountBilesik - paymentNew.gain - paymentNew.bsmv - paymentNew.kkdf
       balanceVar = balanceVar - paymentNew.mainMoney
       paymentNew.remains = balanceVar
 
       return paymentNew
     })
 
-    const totalAmount = paymentAmount * n
-    setPayments({ payback: paymentsFinal, totalAmount })
+    const totalBilesik = amountBilesik * n
+
+    const bilesik = { totalAmount: totalBilesik, payback: bilesikFinal }
+    const basit = { totalAmount: 0, payback: [] }
+
+    setPayments({ basit, bilesik })
   }
 
   return (

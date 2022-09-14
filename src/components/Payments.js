@@ -6,8 +6,9 @@ import Payment from './Payment'
 
 const Payments = () => {
   const { payments } = usePaymentsContext()
-  const { payback, totalAmount } = payments
+  const { bilesik } = payments
   const [slider, setSlider] = useState('basit')
+  const { payback, totalAmount } = bilesik
 
   if (payback.length === 0) {
     return null
