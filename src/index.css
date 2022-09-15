@@ -200,6 +200,11 @@ form {
   border: 2px hsl(205, 86%, 17%) solid;
   padding: 0 1rem;
   border-radius: 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 table {
@@ -272,7 +277,8 @@ td {
   }
 
   form,
-  .todo-list {
+  .todo-list,
+  table {
     width: 85%;
     padding: 0.2rem 0.2rem;
   }
@@ -299,5 +305,42 @@ td {
   .box,
   .total-amount {
     font-size: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  p {
+    font-size: 0.7rem;
+  }
+
+  form,
+  .todo-list,
+  table {
+    width: 90%;
+    padding: 0.2rem 0.2rem;
+  }
+
+  button,
+  .icon-button {
+    padding: 0.1rem 0.2rem;
+    font-size: 0.5rem;
+  }
+
+  label,
+  .form-content {
+    font-size: 0.5rem;
+  }
+
+  tr {
+    padding: 0.1rem;
+  }
+
+  td {
+    width: 4rem;
+    font-size: 0.4rem;
+  }
+  .box,
+  .total-amount {
+    font-size: 0.3rem;
   }
 }

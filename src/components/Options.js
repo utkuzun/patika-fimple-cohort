@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { usePaymentsContext } from '../contexts/paymentsContext'
 
-const Options = () => {
+const Options = ({ setInfo }) => {
   const { createPayments } = usePaymentsContext()
 
   const initialValues = {
@@ -20,6 +20,27 @@ const Options = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    const errors = Object.entries(formOptions)
+      .map(([input, value]) => {
+        if (!value || value < 0) {
+          return {
+            errorName: input,
+            message: `Lütfen ${input} değerini giriniz !!`,
+          }
+        }
+      })
+      .filter((item) => item !== undefined)
+
+    console.log(errors)
+    if (errors.length > 0) {
+      console.log(errors, setInfo)
+      setInfo(errors)
+      setTimeout(() => {
+        setInfo([])
+      }, 2000)
+      return
+    }
 
     createPayments({
       ...formOptions,
