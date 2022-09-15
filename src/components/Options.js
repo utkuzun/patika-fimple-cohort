@@ -1,16 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { usePaymentsContext } from '../contexts/paymentsContext'
-// import { useOptionsContext } from '../contexts/optionsContext'
-import { useForm } from 'react-hook-form'
 
 const Options = () => {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm()
-
   const { createPayments } = usePaymentsContext()
 
   const initialValues = {
@@ -22,43 +14,55 @@ const Options = () => {
     kkdf: 15,
   }
 
+  const [formOptions, setFormOptions] = useState(initialValues)
+
   const periodOptions = ['aylık', 'yıllık', 'haftalık']
 
-  const onSubmit = (data) => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
     createPayments({
-      ...data,
-      bsmv: data.bsmv / 100,
-      kkdf: data.kkdf / 100,
-      interestRate: data.interestRate / 100,
+      ...formOptions,
+      bsmv: formOptions.bsmv / 100,
+      kkdf: formOptions.kkdf / 100,
+      interestRate: formOptions.interestRate / 100,
     })
   }
-  console.log(errors)
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+
+    setFormOptions({ ...formOptions, [name]: value })
+  }
+
+  // useEffect(() => {
+  //   setInfo(errors)
+  //   setTimeout(() => {
+  //     setInfo()
+  //   }, 2000)
+  // }, [errors])
 
   return (
     <section className='flex-col'>
       <h4>Kredi bilgilerini gir</h4>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit}>
         <div className='form-input'>
-          <label htmlFor='balance'>Miktar : </label>
+          <label htmlFor='balance'>Miktar (&#8378;) :</label>
           <input
             className='form-content'
-            defaultValue={initialValues.balance}
             type='number'
-            {...register('balance', {
-              required: true,
-              min: {
-                value: 1000,
-                message: 'En az 1000 TL lik bir miktar giriniz!!',
-              },
-            })}
+            name='balance'
+            value={formOptions.balance}
+            onChange={handleChange}
           />
         </div>
         <div className='form-input'>
           <label htmlFor='balance'>Taksit Seçeneği : </label>
           <select
             className='form-content'
-            defaultValue={initialValues.period}
-            {...register('period', { required: true })}
+            name='period'
+            value={formOptions.period}
+            onChange={handleChange}
           >
             {periodOptions.map((period) => (
               <option key={period} value={period}>
@@ -71,51 +75,42 @@ const Options = () => {
           <label htmlFor='balance'>Vade : </label>
           <input
             className='form-content'
-            defaultValue={initialValues.numberOfPeriods}
             type='number'
-            {...register('numberOfPeriods', {
-              required: true,
-              min: { value: 1, message: 'Lütfen vade sayısını giriniz!!' },
-            })}
+            step='1'
+            name='numberOfPeriods'
+            value={formOptions.numberOfPeriods}
+            onChange={handleChange}
           />
         </div>
         <div className='form-input'>
-          <label htmlFor='balance'>Kar Oranı : </label>
+          <label htmlFor='balance'>Kar Oranı(%) :</label>
           <input
             className='form-content'
             type='number'
             step='0.01'
-            defaultValue={initialValues.interestRate}
-            {...register('interestRate', {
-              required: true,
-              min: { value: 1, message: 'Lütfen kar oranını giriniz!!' },
-            })}
+            name='interestRate'
+            value={formOptions.interestRate}
+            onChange={handleChange}
           />
         </div>
         <div className='form-input'>
-          <label htmlFor='balance'>BSMV : </label>
+          <label htmlFor='balance'>BSMV(%) : </label>
           <input
             className='form-content'
             type='number'
-            defaultValue={initialValues.bsmv}
             name='bsmv'
-            {...register('bsmv', {
-              required: true,
-              min: { value: 1, message: 'Lütfen BSMV giriniz!!' },
-            })}
+            value={formOptions.bsmv}
+            onChange={handleChange}
           />
         </div>
         <div className='form-input'>
-          <label htmlFor='balance'>KKDF : </label>
+          <label htmlFor='balance'>KKDF(%) : </label>
           <input
             className='form-content'
             type='number'
-            defaultValue={initialValues.kkdf}
             name='kkdf'
-            {...register('kkdf', {
-              required: true,
-              min: { value: 1, message: 'Lütfen KKDF giriniz!!' },
-            })}
+            value={formOptions.kkdf}
+            onChange={handleChange}
           />
         </div>
         <button type='submit'>Hesapla</button>

@@ -187,6 +187,7 @@ form {
   top: 0;
   left: 0;
   transition: all 0.3s ease;
+  opacity: 0.5;
 }
 
 .slider-tab.right {
@@ -197,7 +198,7 @@ form {
   background: #fff;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   border: 2px hsl(205, 86%, 17%) solid;
-  padding: 0 0.5rem;
+  padding: 0 1rem;
   border-radius: 0.2rem;
 }
 
@@ -231,6 +232,23 @@ td {
   color: black;
   font-size: 0.7rem;
   width: 5rem;
+}
+
+.info-div {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  justify-content: center;
+  border-radius: 0.3rem;
+  border: solid red 2px;
+  padding: 0.3rem 1rem;
+  background: #fff;
+}
+
+.info-content {
+  color: red;
 }
 
 @media screen and (max-width: 950px) {

@@ -32,7 +32,7 @@ const Payments = () => {
           <span>Basit Faiz</span>
           <span>Bileşik Faiz</span>
         </div>
-        <div className='total-amount'>{totalAmount.toFixed(2)}</div>
+        <div className='total-amount'>{totalAmount.toFixed(2)}&#8378;</div>
       </div>
       <table>
         <thead>
@@ -42,8 +42,8 @@ const Payments = () => {
             <td>Kalan Ana Para</td>
             <td>Ana Para</td>
             <td>Kar Tutarı</td>
-            <td>KKDF</td>
             <td>BSMV</td>
+            <td>KKDF</td>
           </tr>
         </thead>
         <tbody>
