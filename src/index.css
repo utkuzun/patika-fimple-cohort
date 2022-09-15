@@ -215,6 +215,7 @@ table {
   text-align: center;
   padding: 1rem;
   width: 70%;
+  padding-bottom: 100px;
 }
 
 thead,
@@ -281,6 +282,7 @@ td {
   table {
     width: 85%;
     padding: 0.2rem 0.2rem;
+    padding-bottom: 50px;
   }
 
   button,
@@ -318,6 +320,7 @@ td {
   table {
     width: 90%;
     padding: 0.2rem 0.2rem;
+    padding-bottom: 20px;
   }
 
   button,
@@ -341,6 +344,6 @@ td {
   }
   .box,
   .total-amount {
-    font-size: 0.3rem;
+    font-size: 0.4rem;
   }
 }
