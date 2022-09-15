@@ -3,5 +3,5 @@ export const parsePayments = (number) => {
     style: 'currency',
     currency: 'TRY',
     minimumFractionDigits: 2,
-  }).format(number)
+  }).format(Math.abs(number))
 }
