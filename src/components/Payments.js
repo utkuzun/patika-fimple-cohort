@@ -33,7 +33,7 @@ const Payments = () => {
           <span>Basit Faiz</span>
           <span>Bileşik Faiz</span>
         </div>
-        <div className='total-amount'>{parsePayments(totalAmount)}&#8378;</div>
+        <div className='total-amount'>{parsePayments(totalAmount)}</div>
       </div>
       <table>
         <thead>
