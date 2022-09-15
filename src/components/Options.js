@@ -14,6 +14,14 @@ const Options = ({ setInfo }) => {
     kkdf: 15,
   }
 
+  const messageMap = {
+    balance: 'Lütfen kredi miktarını giriniz!!',
+    numberOfPeriods: 'Lütfen vade miktarını giriniz!!',
+    interestRate: 'Lütfen vade miktarını giriniz!!',
+    bsmv: 'Lütfen BSMV miktarını giriniz!!',
+    kkdf: 'Lütfen KKDF miktarını giriniz!!',
+  }
+
   const [formOptions, setFormOptions] = useState(initialValues)
 
   const periodOptions = ['aylık', 'yıllık', 'haftalık']
@@ -26,13 +34,12 @@ const Options = ({ setInfo }) => {
         if (!value || value < 0) {
           return {
             errorName: input,
-            message: `Lütfen ${input} değerini giriniz !!`,
+            message: messageMap[input],
           }
         }
       })
       .filter((item) => item !== undefined)
 
-    console.log(errors)
     if (errors.length > 0) {
       console.log(errors, setInfo)
       setInfo(errors)
@@ -55,13 +62,6 @@ const Options = ({ setInfo }) => {
 
     setFormOptions({ ...formOptions, [name]: value })
   }
-
-  // useEffect(() => {
-  //   setInfo(errors)
-  //   setTimeout(() => {
-  //     setInfo()
-  //   }, 2000)
-  // }, [errors])
 
   return (
     <section className='flex-col'>
