@@ -260,6 +260,10 @@ td {
     width: 4rem;
     font-size: 0.6rem;
   }
+  .box,
+  .total-amount {
+    font-size: 0.6rem;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -290,6 +294,10 @@ td {
 
   td {
     width: 4rem;
+    font-size: 0.5rem;
+  }
+  .box,
+  .total-amount {
     font-size: 0.5rem;
   }
 }

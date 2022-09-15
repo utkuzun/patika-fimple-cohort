@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import { usePaymentsContext } from '../contexts/paymentsContext'
+import { parsePayments } from '../utils/numberHelpers'
 
 import Payment from './Payment'
 
@@ -32,7 +33,7 @@ const Payments = () => {
           <span>Basit Faiz</span>
           <span>Bileşik Faiz</span>
         </div>
-        <div className='total-amount'>{totalAmount.toFixed(2)}&#8378;</div>
+        <div className='total-amount'>{parsePayments(totalAmount)}&#8378;</div>
       </div>
       <table>
         <thead>
