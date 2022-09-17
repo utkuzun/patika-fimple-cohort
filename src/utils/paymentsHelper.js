@@ -5,8 +5,8 @@ export const createBilesikPayments = (options) => {
 
   const n = numberOfPeriods
 
-  let i = interestRate * (1 + bsmv + kkdf)
-  let interest = interestRate
+  let i = Number(interestRate * (1 + bsmv + kkdf))
+  let interest = Number(interestRate)
 
   if (period === 'haftalık') {
     i = i * (7 / 30)
@@ -17,7 +17,15 @@ export const createBilesikPayments = (options) => {
     interest = interestRate * (365 / 30)
   }
 
-  const amountBilesik = (balance * (i * (1 + i) ** n)) / ((1 + i) ** n - 1)
+  i = Number(i)
+  interest = Number(interest)
+
+  let amountBilesik =
+    (balance * (i * Number(1 + i) ** n)) / (Number(1 + i) ** n - 1)
+
+  if (interest === 0) {
+    amountBilesik = balance / n
+  }
 
   let bilesikInit = _.times(numberOfPeriods, _.constant({}))
 
@@ -49,8 +57,8 @@ export const createBasitPayments = (options) => {
 
   const n = numberOfPeriods
 
-  let i = interestRate * (1 + bsmv + kkdf)
-  let interest = interestRate
+  let i = Number(interestRate * (1 + bsmv + kkdf))
+  let interest = Number(interestRate)
 
   if (period === 'haftalık') {
     i = i * (7 / 30)
