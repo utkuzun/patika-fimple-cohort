@@ -93,3 +93,25 @@ export const createBasitPayments = (options) => {
 
   return { basitFinal, totalBasit }
 }
+
+export const summarizePayments = (payments) => {
+  const { basit, bilesik } = payments
+
+  let summary = { basit: {}, bilesik: {} }
+
+  summary.basit.totalAmount = basit.totalAmount
+  summary.basit.totalGain = _(basit.payback).sumBy('gain')
+  summary.basit.totalGainWithTaxes =
+    _(basit.payback).sumBy('gain') +
+    _(basit.payback).sumBy('bsmv') +
+    _(basit.payback).sumBy('kkdf')
+
+  summary.bilesik.totalAmount = bilesik.totalAmount
+  summary.bilesik.totalGain = _(bilesik.payback).sumBy('gain')
+  summary.bilesik.totalGainWithTaxes =
+    _(bilesik.payback).sumBy('gain') +
+    _(bilesik.payback).sumBy('bsmv') +
+    _(bilesik.payback).sumBy('kkdf')
+
+  return summary
+}

@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { usePaymentsContext } from '../contexts/paymentsContext'
 import { parsePayments } from '../utils/numberHelpers'
 
 import Payment from './Payment'
 
-const Payments = () => {
+const Payments = ({ slider, toggleSlider }) => {
   const { payments } = usePaymentsContext()
-  const [slider, setSlider] = useState('bilesik')
 
   const { bilesik, basit } = payments
 
@@ -15,11 +14,6 @@ const Payments = () => {
 
   if (payback.length === 0) {
     return null
-  }
-
-  const toggleSlider = () => {
-    const newSlider = slider === 'basit' ? 'bileşik' : 'basit'
-    setSlider(newSlider)
   }
 
   return (
