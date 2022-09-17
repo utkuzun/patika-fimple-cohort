@@ -207,6 +207,19 @@ form {
   flex-direction: column;
 }
 
+.slider.summary {
+  width: 70%;
+  justify-content: center;
+  gap: 5px;
+}
+
+.total-amount.summary {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-size: 0.8rem;
+}
+
 table {
   display: flex;
   flex-direction: column;
@@ -276,6 +289,10 @@ td {
   .total-amount {
     font-size: 0.6rem;
   }
+
+  .total-amount.summary {
+    font-size: 0.6rem;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -314,9 +331,12 @@ td {
   .total-amount {
     font-size: 0.5rem;
   }
+  .total-amount.summary {
+    font-size: 0.5rem;
+  }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
   p {
     font-size: 0.7rem;
   }
@@ -350,6 +370,11 @@ td {
   }
   .box,
   .total-amount {
-    font-size: 0.4rem;
+    font-size: 0.3rem;
+  }
+
+  .total-amount.summary {
+    font-size: 0.3rem;
+    padding: 0.1rem;
   }
 }

@@ -22,15 +22,22 @@ const Summary = ({ slider }) => {
     <section className='flex-col'>
       <h4>Kredi Özet Bilgileri</h4>
 
-      <div className='slider'>
-        <div className='total-amount'>
-          Toplam Geri Ödeme :{parsePayments(totalAmount)}
+      <div className='slider summary'>
+        <div className='total-amount summary'>
+          <span> Faiz Türü : </span>
+          {`${slider === 'basit' ? 'Basit Faiz' : 'Bileşik Faiz'}`}
         </div>
-        <div className='total-amount'>
-          Toplam Faiz :{parsePayments(totalGain)}
+        <div className='total-amount summary'>
+          <span> Toplam Geri Ödeme : </span>
+          {parsePayments(totalAmount)}
         </div>
-        <div className='total-amount'>
-          Toplam Vergiler Dahil Faiz :{parsePayments(totalGainWithTaxes)}
+        <div className='total-amount summary'>
+          <span> Toplam Faiz : </span>
+          {parsePayments(totalGain)}
+        </div>
+        <div className='total-amount summary'>
+          <span> Toplam Vergiler Dahil Faiz : </span>
+          {parsePayments(totalGainWithTaxes)}
         </div>
       </div>
     </section>
