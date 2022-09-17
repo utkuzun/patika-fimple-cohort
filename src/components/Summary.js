@@ -24,7 +24,7 @@ const Summary = ({ slider }) => {
 
       <div className='slider'>
         <div className='total-amount'>
-          Toplam Tutar :{parsePayments(totalAmount)}
+          Toplam Geri Ödeme :{parsePayments(totalAmount)}
         </div>
         <div className='total-amount'>
           Toplam Faiz :{parsePayments(totalGain)}
