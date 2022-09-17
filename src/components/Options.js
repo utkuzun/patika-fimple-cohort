@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 
 import { usePaymentsContext } from '../contexts/paymentsContext'
+import { useInfoContext } from '../contexts/infoContext'
 
-const Options = ({ setInfo }) => {
+const Options = () => {
   const { createPayments, resetPayments } = usePaymentsContext()
+  const { displayInfo } = useInfoContext()
 
   const initialValues = {
     balance: 100000,
@@ -41,10 +43,7 @@ const Options = ({ setInfo }) => {
       .filter((item) => item !== undefined)
 
     if (errors.length > 0) {
-      setInfo(errors)
-      setTimeout(() => {
-        setInfo([])
-      }, 2000)
+      displayInfo(errors)
       return
     }
 

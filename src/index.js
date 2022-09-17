@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App'
 
-import OptionsProvider from './contexts/optionsContext'
 import PaymentsProvider from './contexts/paymentsContext'
+import InfoProvider from './contexts/infoContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <OptionsProvider>
+    <InfoProvider>
       <PaymentsProvider>
         <App />
       </PaymentsProvider>
-    </OptionsProvider>
+    </InfoProvider>
   </React.StrictMode>
 )

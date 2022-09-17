@@ -1,6 +1,10 @@
 import React from 'react'
 
-const Info = ({ info }) => {
+import { useInfoContext } from '../contexts/infoContext'
+
+const Info = () => {
+  const { info } = useInfoContext()
+
   if (info.length === 0) {
     return null
   }
