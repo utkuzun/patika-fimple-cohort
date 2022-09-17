@@ -23,8 +23,17 @@ const PaymentsProvider = ({ children }) => {
     setPayments({ basit, bilesik })
   }
 
+  const resetPayments = () => {
+    setPayments({
+      bilesik: { totalAmount: 0, payback: [] },
+      basit: { totalAmount: 0, payback: [] },
+    })
+  }
+
   return (
-    <PaymentsContext.Provider value={{ payments, setPayments, createPayments }}>
+    <PaymentsContext.Provider
+      value={{ payments, setPayments, resetPayments, createPayments }}
+    >
       {children}
     </PaymentsContext.Provider>
   )

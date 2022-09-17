@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { usePaymentsContext } from '../contexts/paymentsContext'
 
 const Options = ({ setInfo }) => {
-  const { createPayments } = usePaymentsContext()
+  const { createPayments, resetPayments } = usePaymentsContext()
 
   const initialValues = {
     balance: 100000,
@@ -17,9 +17,9 @@ const Options = ({ setInfo }) => {
   const messageMap = {
     balance: 'Lütfen kredi miktarını giriniz!!',
     numberOfPeriods: 'Lütfen vade miktarını giriniz!!',
-    interestRate: 'Lütfen vade miktarını giriniz!!',
-    bsmv: 'Lütfen BSMV miktarını giriniz!!',
-    kkdf: 'Lütfen KKDF miktarını giriniz!!',
+    interestRate: 'Lütfen kar oranı değerini giriniz!!',
+    bsmv: 'Lütfen BSMV değerini giriniz!!',
+    kkdf: 'Lütfen KKDF değerini giriniz!!',
   }
 
   const [formOptions, setFormOptions] = useState(initialValues)
@@ -28,7 +28,7 @@ const Options = ({ setInfo }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
+    resetPayments()
     const errors = Object.entries(formOptions)
       .map(([input, value]) => {
         if (!value || value < 0) {
@@ -41,7 +41,6 @@ const Options = ({ setInfo }) => {
       .filter((item) => item !== undefined)
 
     if (errors.length > 0) {
-      console.log(errors, setInfo)
       setInfo(errors)
       setTimeout(() => {
         setInfo([])

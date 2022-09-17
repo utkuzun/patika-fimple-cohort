@@ -7,7 +7,7 @@ import Payment from './Payment'
 
 const Payments = () => {
   const { payments } = usePaymentsContext()
-  const [slider, setSlider] = useState('basit')
+  const [slider, setSlider] = useState('bilesik')
 
   const { bilesik, basit } = payments
 
