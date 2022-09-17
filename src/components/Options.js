@@ -72,6 +72,7 @@ const Options = ({ setInfo }) => {
             className='form-content'
             type='number'
             name='balance'
+            min='0'
             value={formOptions.balance}
             onChange={handleChange}
           />
@@ -97,6 +98,7 @@ const Options = ({ setInfo }) => {
             className='form-content'
             type='number'
             step='1'
+            min='0'
             name='numberOfPeriods'
             value={formOptions.numberOfPeriods}
             onChange={handleChange}
@@ -108,6 +110,7 @@ const Options = ({ setInfo }) => {
             className='form-content'
             type='number'
             step='0.01'
+            min='0'
             name='interestRate'
             value={formOptions.interestRate}
             onChange={handleChange}
@@ -119,6 +122,7 @@ const Options = ({ setInfo }) => {
             className='form-content'
             type='number'
             name='bsmv'
+            min='0'
             value={formOptions.bsmv}
             onChange={handleChange}
           />
@@ -129,6 +133,7 @@ const Options = ({ setInfo }) => {
             className='form-content'
             type='number'
             name='kkdf'
+            min='0'
             value={formOptions.kkdf}
             onChange={handleChange}
           />
